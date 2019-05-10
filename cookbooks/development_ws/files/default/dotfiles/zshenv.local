@@ -1,0 +1,3 @@
+DEBEMAIL="caleb@land.fm"
+DEBFULLNAME="Caleb Land"
+export DEBEMAIL DEBFULLNAME

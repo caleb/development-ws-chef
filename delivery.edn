@@ -1,0 +1,6 @@
+{:host "10.0.0.252",
+ :port 22,
+ :user "root",
+ :remote-dir "/chef",
+ :attributes {:hostname "development-vm"
+              :username "caleb"}}

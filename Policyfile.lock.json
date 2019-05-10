@@ -1,0 +1,51 @@
+{
+  "revision_id": "4606d88bb648dc0b818ffee5dbf1e69d5873f9843f7364b9d4957467dd0ea696",
+  "name": "development_ws",
+  "run_list": [
+    "recipe[development_ws::default]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "development_ws": {
+      "version": "1.0.0",
+      "identifier": "c86aa491df1196220aef6fb2b1a2f658779c0c65",
+      "dotted_decimal_identifier": "56412250396627350.9582172695605666.270859824270437",
+      "source": "cookbooks/development_ws",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": null,
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": "cookbooks/development_ws"
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "development_ws",
+        "~> 1.0.0"
+      ]
+    ],
+    "dependencies": {
+      "development_ws (1.0.0)": [
+
+      ]
+    }
+  }
+}
