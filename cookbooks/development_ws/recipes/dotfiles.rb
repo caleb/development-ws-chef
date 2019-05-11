@@ -38,8 +38,7 @@ cookbook_file "#{dotfiles_directory}/gitconfig.local" do
 end
 
 bash 'run rcup' do
-  user username
   code <<-BASH
-    rcup
+    sudo -u #{username} rcup
   BASH
 end

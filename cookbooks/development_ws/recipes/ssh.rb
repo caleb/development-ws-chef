@@ -3,12 +3,6 @@ group = username
 home_directory = "/home/#{username}"
 ssh_directory = "#{home_directory}/.ssh"
 
-directory "#{ssh_directory}" do
-  owner username
-  group group
-  mode '0700'
-end
-
 cookbook_file "#{ssh_directory}/id_rsa.pub" do
   owner username
   group group

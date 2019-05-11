@@ -1,6 +1,7 @@
-{:host "10.0.0.252",
+{:host "development-vm.local",
  :port 22,
  :user "root",
  :remote-dir "/chef",
- :attributes {:hostname "development-vm"
+ :attributes {:apt_repository_url "http://10.0.0.2/debian"
+              :hostname "development-vm"
               :username "caleb"}}

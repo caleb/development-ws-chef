@@ -7,8 +7,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe 'development_ws::apt_repositories'
+
 # Set the user password
 include_recipe 'development_ws::user'
+
+# Create directories
+include_recipe 'development_ws::directories'
 
 # Enable userns for the brave browser
 include_recipe 'development_ws::userns'
@@ -17,11 +22,7 @@ include_recipe 'development_ws::userns'
 include_recipe 'development_ws::networking'
 include_recipe 'development_ws::ssh_known_hosts'
 
-# Create directories
-include_recipe 'development_ws::directories'
-
 # Install Packages
-include_recipe 'development_ws::apt_repositories'
 include_recipe 'development_ws::packages'
 
 # Install dotfiles and configure the shell

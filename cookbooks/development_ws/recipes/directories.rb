@@ -1,7 +1,26 @@
 username = node[:username]
 group = username
 home_directory = "/home/#{username}"
+ssh_directory = "/home/#{username}/.ssh"
 projects_directory = "#{home_directory}/Projects"
+downloads_directory = "#{home_directory}/Downloads"
+
+directory "#{ssh_directory}" do
+  owner username
+  group group
+  mode '0700'
+end
+
+#
+# Download Directory (this is created by gnome automatically on first login,
+# but we want to make sure it exists because we put stuff in there)
+#
+directory(downloads_directory) do
+  action :create
+  owner username
+  group username
+  mode '0755'
+end
 
 #
 # Project Directory
