@@ -44,6 +44,7 @@ package 'hub'
 package 'ripgrep'
 package 'rlwrap'
 package 'rcm'
+package 'editorconfig'
 
 #
 # Applications
