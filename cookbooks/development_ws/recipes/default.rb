@@ -40,3 +40,6 @@ include_recipe 'development_ws::groups'
 
 # Configure samba
 include_recipe 'development_ws::samba'
+
+# Configure docker
+include_recipe 'development_ws::docker'
