@@ -34,6 +34,7 @@ include_recipe 'development_ws::projects'
 
 # Configure settings of the desktop
 include_recipe 'development_ws::settings'
+include_recipe 'development_ws::fonts'
 
 # Add our user to some groups
 include_recipe 'development_ws::groups'

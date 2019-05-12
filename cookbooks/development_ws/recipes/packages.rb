@@ -35,7 +35,7 @@ package 'containerd.io'
 package 'docker-compose'
 
 package 'ruby'
-package 'clojure'
+package 'leiningen'
 
 #
 # Utilities
@@ -65,4 +65,22 @@ remote_file "/home/#{node[:username]}/Downloads/jetbrains-toolbox-1.14.5179.tar.
   source 'https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.14.5179.tar.gz'
   owner node[:username]
   group node[:username]
+end
+
+#
+# Install clojure
+#
+remote_file "/home/#{node[:username]}/Downloads/linux-install-1.10.0.442.sh" do
+  source 'https://download.clojure.org/install/linux-install-1.10.0.442.sh'
+  owner node[:username]
+  group node[:username]
+  mode '0755'
+end
+
+bash 'install clojure' do
+  code <<-BASH
+    cd /home/#{node[:username]}/Downloads
+    bash linux-install-1.10.0.442.sh
+  BASH
+  not_if { ::File.exist?("/usr/local/bin/clojure") }
 end
