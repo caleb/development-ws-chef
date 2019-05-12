@@ -1,5 +1,5 @@
 {
-  "revision_id": "65a28365167cdf3efe9927330a304f4f86bfea1c5c8146ab779b2d560c1c7dfc",
+  "revision_id": "5b2e8cdd9036b1412a7f6a6b6641bbc520e9b112e983bab0543279084183a5ad",
   "name": "development_ws",
   "run_list": [
     "recipe[development_ws::default]"
@@ -10,14 +10,14 @@
   "cookbook_locks": {
     "development_ws": {
       "version": "1.0.0",
-      "identifier": "7148c205072379d2e5215d086927a7b54232712f",
-      "dotted_decimal_identifier": "31886670513513337.59361676566751527.184396941521199",
+      "identifier": "c177c730d5d225550f44328d7a383d4809ac638f",
+      "dotted_decimal_identifier": "54456367906673189.23942158600731192.67379609232271",
       "source": "cookbooks/development_ws",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
         "remote": "git@github.com:caleb/development-ws-chef.git",
-        "revision": "cfb353e84fb2e7d1b25f9da63a07a51253898acd",
+        "revision": "2b7bf61f194d5269144e2d2d56de6b6698303086",
         "working_tree_clean": false,
         "published": true,
         "synchronized_remote_branches": [

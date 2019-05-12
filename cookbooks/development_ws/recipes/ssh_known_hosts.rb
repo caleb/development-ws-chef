@@ -2,13 +2,13 @@ known_host = -> (site) do
   ssh_known_hosts_entry(site) {
     owner node[:username]
     group node[:username]
-    mode '0544'
+    mode '0644'
     file_location "/home/#{node[:username]}/.ssh/known_hosts"
   }
   ssh_known_hosts_entry(site) {
     owner 'root'
     group 'root'
-    mode '0544'
+    mode '0644'
     file_location "/root/.ssh/known_hosts"
   }
 end
