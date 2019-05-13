@@ -8,6 +8,8 @@ dotfiles_directory = "#{projects_directory}/dotfiles"
 git dotfiles_directory do
   repository 'git@github.com:caleb/dotfiles.git'
   action :checkout
+  checkout_branch 'master'
+  enable_checkout false
 end
 bash "chown #{dotfiles_directory} to #{username}:#{group}" do
   code <<-BASH
