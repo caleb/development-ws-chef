@@ -93,3 +93,17 @@ remote_file '/usr/local/bin/boot' do
   group 'root'
   mode '0755'
 end
+
+#
+# Chef Workstation
+#
+remote_file "/home/#{node[:username]}/Downloads/chef-workstation_0.2.53-1_amd64.deb" do
+  source 'https://packages.chef.io/files/stable/chef-workstation/0.2.53/ubuntu/18.04/chef-workstation_0.2.53-1_amd64.deb'
+  owner node[:username]
+  group node[:username]
+  not_if { ::File.exist?("/usr/bin/chef") }
+end
+
+dpkg_package 'chef-workstation' do
+  source "/home/#{node[:username]}/Downloads/chef-workstation_0.2.53-1_amd64.deb"
+end
