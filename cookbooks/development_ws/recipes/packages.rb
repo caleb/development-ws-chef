@@ -65,6 +65,7 @@ remote_file "/home/#{node[:username]}/Downloads/jetbrains-toolbox-1.14.5179.tar.
   source 'https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.14.5179.tar.gz'
   owner node[:username]
   group node[:username]
+  not_if { ::File.exist?("/home/#{node[:username]}/.local/share/JetBrains") }
 end
 
 #
@@ -75,6 +76,7 @@ remote_file "/home/#{node[:username]}/Downloads/linux-install-1.10.0.442.sh" do
   owner node[:username]
   group node[:username]
   mode '0755'
+  not_if { ::File.exist?("/usr/local/bin/clojure") }
 end
 
 bash 'install clojure' do
@@ -83,4 +85,11 @@ bash 'install clojure' do
     bash linux-install-1.10.0.442.sh
   BASH
   not_if { ::File.exist?("/usr/local/bin/clojure") }
+end
+
+remote_file '/usr/local/bin/boot' do
+  source 'https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh'
+  owner 'root'
+  group 'root'
+  mode '0755'
 end

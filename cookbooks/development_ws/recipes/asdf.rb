@@ -13,7 +13,7 @@ git "/home/#{username}/.asdf" do
 end
 
 bash 'install asdf plugins' do
-  returns [0, 2]
+  returns [0, 1, 2]
   code <<-BASH
     sudo -u #{username} bash -c "
       . /home/#{username}/.asdf/asdf.sh;
