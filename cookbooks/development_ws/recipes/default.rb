@@ -27,6 +27,7 @@ include_recipe 'development_ws::packages'
 
 # Install dotfiles and configure the shell
 include_recipe 'development_ws::dotfiles'
+include_recipe 'development_ws::asdf'
 include_recipe 'development_ws::ssh'
 
 # Clone projects I use
