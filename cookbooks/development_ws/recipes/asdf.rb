@@ -6,6 +6,7 @@ nodejs_version = node[:nodejs_version] || "10.15.3"
 
 git "/home/#{username}/.asdf" do
   action :checkout
+  checkout_branch node[:asdf_version][1..-1] # Cut off the leading 'v' to create a branch name
   repository 'https://github.com/asdf-vm/asdf.git'
   revision node[:asdf_version]
   user username
