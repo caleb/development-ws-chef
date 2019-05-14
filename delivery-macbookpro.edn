@@ -1,0 +1,10 @@
+{:host "portable-vm.local",
+ :port 22,
+ :user "root",
+ :remote-dir "/chef",
+ :attributes {:apt_repository_url "http://deb.debian.org/debian"
+              :ruby_version "2.6.3"
+              :nodejs_version "10.15.3"
+              :asdf_version "v0.7.1"
+              :hostname "portable-vm"
+              :username "caleb"}}
