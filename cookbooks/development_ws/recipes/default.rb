@@ -6,6 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+hostname node[:ws][:hostname]
 
 include_recipe 'development_ws::apt_repositories'
 

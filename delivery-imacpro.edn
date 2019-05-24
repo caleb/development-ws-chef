@@ -2,9 +2,9 @@
  :port 22,
  :user "root",
  :remote-dir "/chef",
- :attributes {:apt_repository_url "http://10.0.0.2/debian"
+ :attributes {:ws {:hostname "development-vm"}
+              :apt_repository_url "http://10.0.0.2/debian"
               :ruby_version "2.6.3"
               :nodejs_version "10.15.3"
               :asdf_version "v0.7.1"
-              :hostname "development-vm"
               :username "caleb"}}
