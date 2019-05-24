@@ -37,6 +37,8 @@ package 'docker-compose'
 package 'ruby'
 package 'leiningen'
 
+package 'dpkg-dev'
+
 #
 # Utilities
 #
@@ -45,6 +47,8 @@ package 'ripgrep'
 package 'rlwrap'
 package 'rcm'
 package 'editorconfig'
+package 'pass'
+package 'pass-extension-otp'
 
 #
 # Applications
@@ -95,15 +99,31 @@ remote_file '/usr/local/bin/boot' do
 end
 
 #
-# Chef Workstation
+# Fetch packages to put in our local apt repository
 #
-remote_file "/home/#{node[:username]}/Downloads/chef-workstation_0.2.53-1_amd64.deb" do
-  source 'https://packages.chef.io/files/stable/chef-workstation/0.2.53/ubuntu/18.04/chef-workstation_0.2.53-1_amd64.deb'
-  owner node[:username]
-  group node[:username]
-  not_if { ::File.exist?("/usr/bin/chef") }
+remote_file('/srv/apt/chef-workstation_0.2.53-1_amd64.deb') { source 'https://packages.chef.io/files/stable/chef-workstation/0.2.53/ubuntu/18.04/chef-workstation_0.2.53-1_amd64.deb' }
+
+autokey_version = '0.95.7-0'
+autokey_tag = 'v0.95.7'
+%w{autokey-common autokey-gtk}.each do |autokey_package|
+  package_filename = "#{autokey_package}_#{autokey_version}_all.deb"
+  filename = "/srv/apt/#{package_filename}"
+  remote_file(filename) { source "https://github.com/autokey/autokey/releases/download/#{autokey_tag}/#{package_filename}" }
 end
 
-dpkg_package 'chef-workstation' do
-  source "/home/#{node[:username]}/Downloads/chef-workstation_0.2.53-1_amd64.deb"
+bash 'update local package repository' do
+  action :run
+  code <<-BASH
+    cd /srv/apt
+    rm -f Packages
+    dpkg-scanpackages -m . > Packages
+    apt update
+  BASH
 end
+
+#
+# Install our local packages
+#
+package 'chef-workstation'
+package('autokey-common') { version autokey_version }
+package('autokey-gtk') { version autokey_version }

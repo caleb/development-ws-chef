@@ -24,7 +24,6 @@ package 'curl'
 package 'gnupg'
 package 'software-properties-common'
 
-
 apt_repository 'non-free' do
   uri url
   distribution distribution
@@ -68,4 +67,12 @@ apt_repository 'docker' do
   uri 'https://download.docker.com/linux/debian/'
   key 'https://download.docker.com/linux/debian/gpg'
   components ['stable']
+end
+
+directory('/srv/apt') { owner node[:username]; group node[:username] }
+
+apt_repository 'local' do
+  uri 'file:/srv/apt'
+  trusted true
+  distribution './'
 end
