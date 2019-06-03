@@ -31,10 +31,20 @@ apt_repository 'non-free' do
   components ['non-free']
 end
 
+# apt_repository 'thoughtbot' do
+#   uri 'https://apt.thoughtbot.com/debian/'
+#   key "https://apt.thoughtbot.com/thoughtbot.gpg.key"
+#   distribution 'stable'
+#   components ['main']
+# end
+
+#
+# Until Thoughtbot fixes it's SSL certificate, we need to just trust
+#
 apt_repository 'thoughtbot' do
-  uri 'https://apt.thoughtbot.com/debian/'
-  key "https://apt.thoughtbot.com/thoughtbot.gpg.key"
+  uri 'http://apt.thoughtbot.com/debian/'
   distribution 'stable'
+  trusted true
   components ['main']
 end
 
