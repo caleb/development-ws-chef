@@ -1,0 +1,14 @@
+{:host "10.0.0.131"
+ :port 22
+ :user "root"
+ :remote-dir "/tmp/chef"
+ :secrets "secrets-pc.edn"
+ :attributes {:ws {:hostname "calebs-pc"}
+              :features {:samba false
+                         :apt_proxy "http://10.0.0.2:3142"
+                         :open_vm_tools false}
+              :apt_repository_url "http://deb.debian.org/debian"
+              :ruby_version "2.6.3"
+              :nodejs_version "10.15.3"
+              :asdf_version "v0.7.1"
+              :username "caleb"}}

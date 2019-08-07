@@ -51,9 +51,9 @@ git "#{projects_directory}/chef/mojo_tools-chef" do
   checkout_branch 'master'
   enable_checkout false
 end
-bash "chown #{projects_directory}/mojo_tools to #{username}:#{group}" do
+bash "chown #{projects_directory}/chef/mojo_tools-chef to #{username}:#{group}" do
   code <<-BASH
-    chown -R #{username}:#{group} #{projects_directory}/mojo_tools
+    chown -R #{username}:#{group} #{projects_directory}/chef/mojo_tools-chef
   BASH
 end
 
@@ -63,8 +63,8 @@ git "#{projects_directory}/mojo_tools" do
   checkout_branch 'master'
   enable_checkout false
 end
-bash "chown #{projects_directory}/chef/mojo_tools-chef to #{username}:#{group}" do
+bash "chown #{projects_directory}/mojo_tools to #{username}:#{group}" do
   code <<-BASH
-    chown -R #{username}:#{group} #{projects_directory}/chef/mojo_tools-chef
+    chown -R #{username}:#{group} #{projects_directory}/mojo_tools
   BASH
 end

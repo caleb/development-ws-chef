@@ -1,7 +1,7 @@
 #
 # VMWare Tools
 #
-package 'open-vm-tools-desktop'
+package 'open-vm-tools-desktop' if node[:features][:open_vm_tools] != false
 
 #
 # Development packages
@@ -26,7 +26,7 @@ package 'libglu1-mesa-dev'
 package 'libpng-dev'
 package 'libssh-dev'
 package 'unixodbc-dev'
-package 'xsltproc' 
+package 'xsltproc'
 package 'fop'
 
 package 'docker-ce'
@@ -75,8 +75,8 @@ end
 #
 # Install clojure
 #
-remote_file "/home/#{node[:username]}/Downloads/linux-install-1.10.0.442.sh" do
-  source 'https://download.clojure.org/install/linux-install-1.10.0.442.sh'
+remote_file "/home/#{node[:username]}/Downloads/linux-install-1.10.1.466.sh" do
+  source 'https://download.clojure.org/install/linux-install-1.10.1.466.sh'
   owner node[:username]
   group node[:username]
   mode '0755'
@@ -101,7 +101,9 @@ end
 #
 # Fetch packages to put in our local apt repository
 #
-remote_file('/srv/apt/chef-workstation_0.2.53-1_amd64.deb') { source 'https://packages.chef.io/files/stable/chef-workstation/0.2.53/ubuntu/18.04/chef-workstation_0.2.53-1_amd64.deb' }
+
+remote_file('/srv/apt/chef-workstation_0.7.4-1_amd64.deb') { source 'https://packages.chef.io/files/stable/chef-workstation/0.7.4/ubuntu/18.04/chef-workstation_0.7.4-1_amd64.deb' }
+remote_file('/srv/apt/dissenter-browser-v0.66.99-amd64.deb') { source 'https://dissenter.com/dist/browser/0.66.99/dissenter-browser-v0.66.99-amd64.deb' }
 
 autokey_version = '0.95.7-0'
 autokey_tag = 'v0.95.7'
@@ -124,6 +126,7 @@ end
 #
 # Install our local packages
 #
-package 'chef-workstation'
+package('chef-workstation')
+package('dissenter-browser')
 package('autokey-common') { version autokey_version }
 package('autokey-gtk') { version autokey_version }

@@ -29,8 +29,8 @@ gsettings_set.('change the gtk-theme to Adwaita-dark', 'org.gnome.desktop.interf
 gsettings_set.('change the clock format to 12h', 'org.gnome.desktop.interface', 'clock-format', '12h')
 gsettings_set.('add a keybinding to reset and clear gnome terminal', 'org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/', 'reset-and-clear', '<Control><Shift>k')
 
-bash 'set the default browser to brave' do
+bash 'set the default browser to dissenter' do
   code <<-BASH
-    sudo -u #{username} xdg-settings set default-web-browser brave-browser.desktop
+    sudo -u #{username} xdg-settings set default-web-browser dissenter-browser.desktop
   BASH
 end

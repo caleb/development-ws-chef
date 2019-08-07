@@ -1,6 +1,25 @@
 distribution = node[:distribution] || `/usr/bin/lsb_release -cs`.strip
 url = node[:apt_repository_url] || 'https://deb.debian.org/debian/'
 
+use_proxy = !! node[:features][:apt_proxy]
+proxy = node[:features][:apt_proxy]
+
+proxyify = -> (url) do
+  if use_proxy
+    url.gsub(%r{https://}, 'http://HTTPS///')
+  else
+    url
+  end
+end
+
+file '/etc/apt/apt.conf.d/00proxy' do
+  action use_proxy ? :create : :destroy
+  owner 'root'
+  group 'root'
+  mode '0644'
+  content %Q{Acquire::http { Proxy "#{proxy}"; };}
+end
+
 template '/etc/apt/sources.list' do
   source 'sources.list.erb'
   owner 'root'
@@ -31,26 +50,16 @@ apt_repository 'non-free' do
   components ['non-free']
 end
 
-# apt_repository 'thoughtbot' do
-#   uri 'https://apt.thoughtbot.com/debian/'
-#   key "https://apt.thoughtbot.com/thoughtbot.gpg.key"
-#   distribution 'stable'
-#   components ['main']
-# end
-
-#
-# Until Thoughtbot fixes it's SSL certificate, we need to just trust
-#
 apt_repository 'thoughtbot' do
-  uri 'http://apt.thoughtbot.com/debian/'
+  uri proxyify.('https://apt.thoughtbot.com/debian/')
+  key "https://apt.thoughtbot.com/thoughtbot.gpg.key"
   distribution 'stable'
-  trusted true
   components ['main']
 end
 
 apt_repository 'vscode' do
   arch 'amd64'
-  uri 'http://packages.microsoft.com/repos/vscode'
+  uri proxyify.('https://packages.microsoft.com/repos/vscode')
   key 'https://packages.microsoft.com/keys/microsoft.asc'
   distribution 'stable'
   components ['main']
@@ -58,7 +67,7 @@ end
 
 apt_repository 'brave' do
   arch 'amd64'
-  uri 'https://brave-browser-apt-release.s3.brave.com/'
+  uri proxyify.('https://brave-browser-apt-release.s3.brave.com/')
   key 'https://brave-browser-apt-release.s3.brave.com/brave-core.asc'
   distribution distribution
   components ['main']
@@ -66,7 +75,7 @@ end
 
 apt_repository 'atom' do
   arch 'amd64'
-  uri 'https://packagecloud.io/AtomEditor/atom/any/'
+  uri proxyify.('https://packagecloud.io/AtomEditor/atom/any/')
   key 'https://packagecloud.io/AtomEditor/atom/gpgkey'
   distribution 'any'
   components ['main']
@@ -74,7 +83,7 @@ end
 
 apt_repository 'docker' do
   arch 'amd64'
-  uri 'https://download.docker.com/linux/debian/'
+  uri proxyify.('https://download.docker.com/linux/debian/')
   key 'https://download.docker.com/linux/debian/gpg'
   components ['stable']
 end

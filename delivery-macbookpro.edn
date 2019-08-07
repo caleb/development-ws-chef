@@ -1,7 +1,7 @@
-{:host "portable-vm.local",
- :port 22,
- :user "root",
- :remote-dir "/chef",
+{:host "portable-vm.local"
+ :port 22
+ :user "root"
+ :remote-dir "/chef"
  :attributes {:ws {:hostname "portable-vm"}
               :apt_repository_url "http://deb.debian.org/debian"
               :ruby_version "2.6.3"
