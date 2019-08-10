@@ -34,7 +34,17 @@ end
 
 bash("Set ACL for project directory #{projects_directory}") do
   code <<-BASH
-    setfacl -m u:#{username}:rwX -m default:u:#{username}:rwX -m g:#{group}:rwX -m default:g:#{group}:rwX -m mask::rwX -m default:mask::rwX #{projects_directory}     
+    setfacl -m u:#{username}:rwX \\
+            -m default:u:#{username}:rwX \\
+            -m g:#{group}:rwX \\
+            -m default:g:#{group}:rwX \\
+            -m u:www-data:rwX \\
+            -m default:u:www-data:rwX \\
+            -m g:www-data:rwX \\
+            -m default:g:www-data:rwX \\
+            -m mask::rwX \\
+            -m default:mask::rwX \\
+            #{projects_directory}     
   BASH
 end
 

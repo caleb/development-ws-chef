@@ -42,7 +42,7 @@ include_recipe 'development_ws::fonts'
 include_recipe 'development_ws::groups'
 
 # Configure samba
-include_recipe 'development_ws::samba' if node[:features][:samba] != false
+include_recipe 'development_ws::samba' if (node[:features] || {})[:samba] != false
 
 # Configure docker
 include_recipe 'development_ws::docker'

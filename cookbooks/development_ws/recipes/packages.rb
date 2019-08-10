@@ -1,7 +1,7 @@
 #
 # VMWare Tools
 #
-package 'open-vm-tools-desktop' if node[:features][:open_vm_tools] != false
+package 'open-vm-tools-desktop' if (node[:features] || {})[:open_vm_tools] != false
 
 #
 # Development packages

@@ -1,8 +1,8 @@
 distribution = node[:distribution] || `/usr/bin/lsb_release -cs`.strip
 url = node[:apt_repository_url] || 'https://deb.debian.org/debian/'
 
-use_proxy = !! node[:features][:apt_proxy]
-proxy = node[:features][:apt_proxy]
+use_proxy = !! (node[:features] || {})[:apt_proxy]
+proxy = (node[:features] || {})[:apt_proxy]
 
 proxyify = -> (url) do
   if use_proxy
@@ -13,7 +13,7 @@ proxyify = -> (url) do
 end
 
 file '/etc/apt/apt.conf.d/00proxy' do
-  action use_proxy ? :create : :destroy
+  action use_proxy ? :create : :delete
   owner 'root'
   group 'root'
   mode '0644'
