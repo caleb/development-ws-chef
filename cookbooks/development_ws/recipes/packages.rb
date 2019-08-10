@@ -28,6 +28,7 @@ package 'libssh-dev'
 package 'unixodbc-dev'
 package 'xsltproc'
 package 'fop'
+package 'php-cli'
 
 package 'docker-ce'
 package 'docker-ce-cli'
