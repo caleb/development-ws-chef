@@ -29,6 +29,7 @@ package 'unixodbc-dev'
 package 'xsltproc'
 package 'fop'
 package 'php-cli'
+package 'yarn'
 
 package 'docker-ce'
 package 'docker-ce-cli'

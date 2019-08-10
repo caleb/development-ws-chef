@@ -88,6 +88,13 @@ apt_repository 'docker' do
   components ['stable']
 end
 
+apt_repository 'yarn' do
+  uri proxyify.('https://dl.yarnpkg.com/debian/')
+  key 'https://dl.yarnpkg.com/debian/pubkey.gpg'
+  distribution 'stable'
+  components ['main']
+end
+
 directory('/srv/apt') { owner node[:username]; group node[:username] }
 
 apt_repository 'local' do
